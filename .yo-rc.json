@@ -1,0 +1,11 @@
+{
+  "generator-reveal": {
+    "presentationTitle": "SIG y Mapas para la web",
+    "packageVersion": "1.0.0",
+    "revealTheme": "night",
+    "useSass": false,
+    "deployToGithubPages": true,
+    "githubUsername": "VictorVelarde",
+    "githubRepository": "presentacion-sig-leaflet"
+  }
+}
