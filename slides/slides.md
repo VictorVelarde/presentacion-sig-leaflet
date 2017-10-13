@@ -1,37 +1,84 @@
-
-# Leaflet
-*SIG y Mapas para la Web*  
-**@CantabriaCoders - Noviembre, 2017**
+![Leaflet Logo](./resources/logoLeaflet.png)  <!-- .element style="border: 0; background: none; box-shadow: none"-->
 <hr />   
-**@VictorVelarde**   
+# SIG & Mapas Web
+<br/>
+
+**[@CodersCantabria](https://twitter.com/coderscantabria) - Noviembre, 2017**
+
+**@VictorVelarde** <!-- .element style="margin-top: 80px; color: #57A15E;" -->
 
 
 ===
 ## Índice
-+ SIG y Mapas Web <!-- .element: class="fragment" data-fragment-index="1" -->
-+ Leaflet <!-- .element: class="fragment" data-fragment-index="2" -->
-+ Futuro <!-- .element: class="fragment" data-fragment-index="3" -->   
+<hr/>
+- SIG <!-- .element: class="fragment" data-fragment-index="1" -->
+- Mapas en la Web y Leaflet <!-- .element: class="fragment" data-fragment-index="2" -->
+- Futuro <!-- .element: class="fragment" data-fragment-index="3" -->   
 
 
-<!-- SIG y Mapas Web ---------------------------------------------- -->
+<!-- 
+SIG ---------------------------------------------- 
+-->
 ===
-## 1º. SIG y Mapas Web
+# 1º. SIG y Mapas
+<!-- .slide: data-background="#ff0000" -->
+
+Note: Intro a los SIG, para entender algunos conceptos básicos:
+IG, capas, raster/vector, componentes (BD, Escritorio, Web), mapas en la web
+y cómo encaja Leaflet en ese contexto.
+
 
 ==
-### SIG
+### Info. Geográfica es...
+<hr/>
+# ¿Dónde está ...?,  <!-- .element: class="fragment" data-fragment-index="1" -->  
+# ¿Qué hay en ...? <!-- .element: class="fragment" data-fragment-index="2" -->  
+# 80% = geo. <!-- .element style="margin-top: 80px; color: #57A15E;" class="fragment" data-fragment-index="3" -->  
+
+Note: X = una mercancía en reparto, un montañero en ruta, un derrame de petróleo, un cliente potencial... | Y = restaurantes en un barrio, tipo de vegetación en una parcela, temperatura en un lago, carreteras en un municipio...
 
 == 
-### Mapas Web
+## 3 Componentes IG 
+- **Espacial** (coordenadas)
+- Temática
+- Temporal
+
+==
+## Componente espacial - I
+### La Tierra es un Geoide
+<img src='resources/geoide.png'>
+
+==
+## Componente espacial - II
+### Se aproxima con un Elipsoide
+<img src='resources/elipsoide.jpg'>
+
+
+
+==
+## Mapas web
+
+==
+## SIG
+
+== 
+## Mapas Web
 
 
 <!-- 2º Leaflet --------------------------------------------------- -->
 ===
-## 2º. Leaflet
+# 2º. Leaflet
+<!-- .slide: data-background="resources/logoLeaflet.png" -->
 
+== 
+## Breve historia
+<!-- .slide: data-background="#57A15E" -->
+Note: Aparición ante GMaps, madurez, casos de éxito.
 
 <!-- 3º Futuro ---------------------------------------------------- -->
 ===
 ## 3º. Futuro
+<!-- .slide: data-background="#ffc156" -->
 
 
 <!-- 4º Cierre ---------------------------------------------------- -->
@@ -44,3 +91,5 @@
 |email|[victor.velarde@gmail.com](mailto:victor.velarde@gmail.com)|
 |||
 
+=== 
+![CodersCantabria](./resources/Coders.jpg)  <!-- .element style="border: 0; background: none; box-shadow: none; border-radius: 350px;" -->
