@@ -1,6 +1,6 @@
-![Leaflet Logo](./resources/logoLeaflet.png)
+#![Leaflet Logo](./resources/logoLeaflet.png)
 <hr />   
-## y mapas en la Web
+## Mapas en la Web
 <br/>
 
 **[@CodersCantabria](https://twitter.com/coderscantabria) - Noviembre, 2017**
@@ -10,13 +10,15 @@
 
 ===
 ## Índice
-1º. Fundamentos de mapas para la Web
-
-2º. Cómo funciona Leaflet
+1. Fundamentos de mapas para la Web
+2. Un repaso general a Leaflet
 
 
 ===
-## 1º. Fundamentos de mapas para la Web
+<div class="box">
+    <h2>1º. Fundamentos de mapas para la Web</h2> 
+</div>
+<!-- .slide: data-background="resources/globos.jpg" -->
 
 Note: 
 Intro a algunos conceptos básicos: IG y sistemas de referencia.
@@ -33,7 +35,9 @@ Note:
 
 ==
 # **SIG**  <!-- .element style="color: #57A15E;"--> 
-## Sistemas para crear, visualizar, consultar y analizar IG
+## Sistemas para crear, consultar, analizar y **visualizar** IG en Mapas
+
+<img src='resources/gis-electronic.jpg'>
 
 Note:
 Pero en esta presentación solo nos centramos en un ámbito muy concreto de los SIG: visualización de mapas en la Web
@@ -49,16 +53,21 @@ Es una cita referida a SIG en administraciones locales. Aunque poco contrastada,
 
 
 == 
-Los 3 Componentes de la IG
-
-## Temático... ¿qué? <!-- .element class="fragment" data-fragment-index="1" -->  
-## Temporal... ¿cuándo? <!-- .element class="fragment" data-fragment-index="2" -->  
-## **Espacial... ¿dónde?** <!-- .element style="color: #57A15E;" class="fragment" data-fragment-index="3" -->  
+<div class="box">
+    Los 3 componentes de la IG
+    <h2>Temático... ¿qué?</h2>
+    <h2>Temporal... ¿cuándo?</h2>
+    <h2><strong>Espacial</strong>... ¿dónde?</h2>
+</div>
+<!-- .slide: data-background="resources/parcelas.jpg" -->
 
 
 ==
-## ¿Dónde estoy?
-Cómo determinar con precisión la **posición** de un objeto sobre la **superficie terrestre**
+<div class="box">
+    <h2>¿Dónde?</h2> 
+    <p>Cómo determinar con precisión la <strong>posición</strong> de un objeto sobre la superficie terrestre</p>
+</div>
+<!-- .slide: data-background="resources/mapa-pin.jpg" -->
 
 Note: Los SIG se basan en los conocimientos de la Geodesia y la Cartografía
 
@@ -71,8 +80,11 @@ Latitud: **43.45779** y Longitud: **-3.81964**
 
 
 ==
-## ¿Cómo llegar a ésto?
-Algunos conceptos de Cartografía y Geodesia
+<div class="box">
+    <h2> ¡Coordenadas!</h2>
+    Algunos conceptos de Cartografía y Geodesia
+</div>
+<!-- .slide: data-background="resources/brujula-mano.jpg" -->
 
 
 ==
@@ -91,23 +103,22 @@ Note: Su medición es labor de la Geodesia, pero es una superficie muy compleja 
 
 ==
 Componente espacial (II)
-### Mejor más sencillo: un **Elipsoide**
+### Mejor en algo más sencillo: un **Elipsoide** o una **Esfera**
 <img src='resources/elipsoide.jpg'>
 
 Note: Un elipsoide es un modelo que determina el tamaño de la Tierra. Hay varios y se elige uno u otro dependiendo del país o área que se desee representar (a veces "encaja con el geoide más, a veces menos...).
 
 
 ==
-## Algunos elipsoides "famosos"
+### El Elipsoide más "famoso" es
 
-|Esferoide|S. mayor (Ecuador)|S. menor|
-|--|--|--|
-|Clarke 1866|6.378.206,4 m|6.356.583,8 m|
-|SGR80|6.378.137.0 m|6.356.752,314 m|
-|WGS 1984|6.378.137.0 m|6.356.752,314 m|
-
-SGR80 ~ 
 ## **WGS84 (GPS)** <!-- .element style="color: #57A15E;" -->
+~ SGR80 (ETRS89 - Europa)
+
+|S. mayor (Ecuador)|S. menor|
+|--|--|
+|6.378.137.0 m|6.356.752,314 m|
+
 
 Note:
 SGR80 es equivalente a WGS84 (idéntico semieje mayor, menor difiere en décimas de milímetro). SGR80 se usa en Europa, dentro del ETRS89.
@@ -122,9 +133,9 @@ Componente espacial (III)
 ## Datum
 <img src='resources/datum.png'>
 
-- Define el punto de contacto de elipsoide y superficie
-- **Local**: NAD 1927, ED 1950... | **Global**: WGS84
-- Datum horizontal
+* Define el punto de contacto de elipsoide y superficie
+* **Local**: NAD 1927, ED 1950... | **Global**: WGS84
+* Datum horizontal
 
 
 == 
@@ -133,46 +144,69 @@ Componente espacial (III)
 
 
 ==
-## Vale, pero eso solo me sirve para un globo terráqueo
+## Vale, pero eso solo me sirve para un **globo** terráqueo
 <img src='resources/globo_persona.jpg'>
 
 
 ==
 ## ¿Y si quiero un mapa en pantalla (o papel)?
 <img src='resources/naranja.jpg'>
+## 3D !== 2D
 
 
 ==
 Componente espacial - (y IV)
 ## La **proyección** es la solución
-### matemática para la conversión de coordenadas Tierra > Papel
+
+* Geográficas a Proyectadas (superficie plana)
+* Geográficas: ~ grados decimales [-180, -90, 180, 90]
+* Proyectadas: ~ metros
 
 
 ==
-## Toda proyección
+## Toda proyección...
+### implica una **distorsión**
+### (área, ángulo, distancias...)
 
-==
-## ¿Para qué tanto lío?
-Si no conocemos el sistema de referencia de un dato, ¡las cosas no cuadran!
-
-
-==
-## Chuleta básica para Mapas web <!-- .element style="color: red;" -->
-GPS, KML, GeoJSON --> por defecto, longitud & latitud WGS84 (**EPSG: 4326**)
-Mapa base (GoogleMaps, OSM...) --> Web Mercator (**EPSG:3857**)
+Note:
+Equidistantes --> conserva las distancias, Equivalentes --> superficies, Conformes --> formas (ángulos).
 
 
 ==
-## Mercator
+## Web Mercator (I)
+### **La Reina en Internet** (GoogleMaps, Bing, ESRI, OSM...)
+* EPSG:3857 (WGS84 + metros)
+* No hay polos! (~ 85ºN a 85ºS)
+* Norte arriba
 
 Note: 
-To simplify the calculations, we use the spherical form of this projection, not the ellipsoidal form. Since the projection is used only for map display, and not for displaying numeric coordinates, we don’t need the extra precision of an ellipsoidal projection. The spherical projection causes approximately 0.33% scale distortion in the Y direction, which is not visually noticeable.
+Se usa la versión esférica de la proyección, no la elipsoidal, para mayor velocidad en los cálculos. Esto provoca aprox. un 0.33% de distorsión de escala en la dirección Y, algo que no es visualmente perceptible, y simplifica los cálculos.
+
+
+==
+## Mercator (II)
+<img src='resources/mercator.jpg'>
+
+
+==
+## Mercator (III)
+<img src='resources/tissot_mercator.png'>
+
+
+==
+## PUNTOS CLAVE 
+### Mapas en la web
+* Si no conocemos el sistema de referencia (EPSG)... **¡las cosas no cuadran!**
+* GPS, KML, GeoJSON...: **EPSG: 4326**
+* Mapa base (GoogleMaps, OSM...: **EPSG:3857**
 
 
 <!-- 2º Leaflet --------------------------------------------------- -->
 ===
-## 2º. Leaflet
-<!-- .slide: data-background="resources/logoLeaflet.png" -->
+<div class="box">
+    <h2>2º. Un repaso general a Leaflet</h2> 
+</div>
+<!-- .slide: data-background="resources/leaves.jpg" -->>
 
 == 
 ## Breve historia
@@ -180,19 +214,13 @@ To simplify the calculations, we use the spherical form of this projection, not 
 Note: Aparición ante GMaps, madurez, casos de éxito.
 
 == 
-## Conceptos básicos SIG
-
-Capas raster/vector, 
-Software SIG: BD, Escritorio, Web
-Formatos de datos y cómo encaja Leaflet en ese contexto.
-
-
-<!-- 3º Futuro ---------------------------------------------------- -->
-===
-## 3º. Futuro
+## Conceptos generales SIG
+* Capa de información: ráster / vector
+* Software: escritorio / BD / Web
+* Formatos de datos y cómo encaja Leaflet en ese contexto.
 
 
-<!-- 4º Cierre ---------------------------------------------------- -->
+<!-- 3º Cierre ---------------------------------------------------- -->
 ===
 ## Referencias
 * ESRI - [Geoide, Elipsoide y Datum](http://desktop.arcgis.com/es/arcmap/latest/map/projections/about-the-geoid-ellipsoid-spheroid-and-datum-and-h.htm)
@@ -205,3 +233,4 @@ Formatos de datos y cómo encaja Leaflet en ese contexto.
 #green: #57A15E
 #orange: #ffc156
 -->
+<!-- .slide: data-background="#000000" -->
