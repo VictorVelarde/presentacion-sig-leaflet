@@ -36,6 +36,11 @@
             background: rgba(0, 0, 0, 0.8);
             padding: 20px;
         }
+
+        div .redbox {
+            background: rgba(255, 0, 0, 0.8);
+            padding: 20px;
+        }
     </style>
 
     <!-- Printing and PDF exports -->
@@ -105,7 +110,7 @@
                 { src: 'js/loadhtmlslides.js', condition: function () { return !!document.querySelector('[data-html]'); } }
             ]
         });
-
+        Reveal.configure({ slideNumber: 'c/t' });
     </script>
 </body>
 
