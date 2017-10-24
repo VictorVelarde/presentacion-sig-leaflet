@@ -52,32 +52,40 @@ Es una cita referida a SIG en administraciones locales. Aunque poco contrastada,
 <div class="box">
     Los 3 componentes de la IG: 
     <em>¿qué?, ¿cuándo?, ¿dónde?</em>
-    <h2>Lo especial es lo espacial, claro!</h2>
+    <h2>Lo especial es lo __espacial__, claro!</h2>
 </div>
 <!-- .slide: data-background="resources/parcelas.jpg" -->
 
 ==
-# **SIG**  <!-- .element style="color: #57A15E;"--> 
+# **SIG:**  <!-- .element style="color: #57A15E;"--> 
 ## Herramientas para crear, consultar, analizar y **visualizar** IG en Mapas
 <img src='resources/gis-electronic.jpg'>
 Note:
 Pero en esta presentación solo nos centramos en un ámbito muy concreto de los SIG: visualización de mapas en la Web
 
 ==
+## Pero los **SIG !== Mapas web**
+(¿quién dijo análisis?) 
+
+==
 <!-- .slide: data-background="black" -->
 
 == 
-## Aquí estamos en el Centro cívico Callealtero
+## Si queremos crear en una web un mapa con el Centro cívico Callealtero...
 <img src='resources/CentroCivico.png' style='height:400px'>
-<br/>
-Latitud: **43.45779** y Longitud: **-3.81964**
+
+==
+## Lo primero es conocer...
 
 ==
 <div class="box">
-    <h2> ¡Coordenadas!</h2>
-    Veamos algunos conceptos de Cartografía y Geodesia...
+    <h2>¡Las Coordenadas!</h2>
+    <p>Latitud: 43.45779 y Longitud: -3.81964</p>
 </div>
 <!-- .slide: data-background="resources/brujula-mano.jpg" -->
+
+== 
+## La **Cartografía** y la **Geodesia** proporcionan los conceptos principales para entenderlas...
 
 ==
 <!-- .slide: data-background="black" -->
@@ -85,7 +93,7 @@ Latitud: **43.45779** y Longitud: **-3.81964**
 ==
 Componente espacial (I)
 ### La Tierra es un~~a~~ ~~Patata~~ **Geoide**
-<img src='resources/geoide.png'>
+<img src='resources/geoide.gif'>
 Note: Su medición es labor de la Geodesia, pero es una superficie muy compleja e irregular para usarla en posicionamiento.
 
 ==
@@ -100,7 +108,7 @@ Componente espacial (II)
 Note: Un elipsoide es un modelo que determina el tamaño de la Tierra. Hay varios y se elige uno u otro dependiendo del país o área que se desee representar (a veces "encaja con el geoide más, a veces menos...).
 
 ==
-### El Elipsoide más "famoso" es
+El Elipsoide más "famoso" es...
 ## **WGS84 (usado en los GPS)** <!-- .element style="color: #57A15E;" -->
 * S. mayor = 6.378.137.0 m
 * S. menor = 6.356.752.314 m
@@ -120,7 +128,7 @@ Componente espacial (III)
 * Datum horizontal
 
 == 
-### Gracias al datum ya podemos medir en superficie con
+Gracias al datum ya podemos medir en superficie con
 ## **Coordenadas geográficas** <!-- .element style="color: #57A15E;" -->
 
 ==
@@ -141,8 +149,8 @@ Componente espacial - (y IV)
 
 ==
 <div class="box">
-    <h2>Toda proyección...</h2>
-    <h3>Implica una <strong>distorsión</strong></h3>
+    <h3>Toda proyección...</h3>
+    <h2>Implica una <strong>distorsión</strong></h2>
     <p>(área, ángulo, distancias...)</p>
 </div>
 <!-- .slide: data-background="resources/mariposa.jpg" -->
@@ -151,8 +159,8 @@ Equidistantes --> conserva las distancias, Equivalentes --> superficies, Conform
 
 ==
 ## Web Mercator (I)
-### **La Reina en Internet** 
-## GoogleMaps, Bing, ESRI, OSM...
+### **La Reina en Internet** <!-- .element style="color: #57A15E;" -->
+* GoogleMaps, Bing, ESRI, OSM...
 * Norte arriba
 * EPSG:3857 (WGS84 + metros)
 * No cubre todo! (~ 85ºN a 85ºS)
@@ -168,6 +176,10 @@ Se usa la versión esférica de la proyección, no la elipsoidal, para mayor vel
 <img src='resources/tissot_mercator.png'>
 
 ==
+## Repasando:
+Geoide >> Elipsoide / Esfera >> Datum >> Coordenadas >> Proyecciones...
+
+==
 <div class="box">
     <h2>¿Ya os habéis dormido?</h2>
 </div>
@@ -176,7 +188,7 @@ Se usa la versión esférica de la proyección, no la elipsoidal, para mayor vel
 ==
 ## PUNTOS CLAVE 
 * GPS, KML, GeoJSON, BD: **EPSG: 4326**
-* Mapa base Web (GoogleMaps, OSM...: **EPSG:3857**
+* Mapa base Web (GoogleMaps, OSM...): **EPSG:3857**
 * Si no conocemos el EPSG... ¡las cosas no cuadran!
 <!-- .slide: data-background="red" -->
 
@@ -193,6 +205,16 @@ Se usa la versión esférica de la proyección, no la elipsoidal, para mayor vel
     <h2>2º. Un repaso general a Leaflet</h2> 
 </div>
 <!-- .slide: data-background="resources/leaves.jpg" -->>
+
+==
+## 1. Mapa básico (4 lín.)
+```js
+var map = L.map('map');
+var url = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png';
+L.tileLayer(url).addTo(map);
+map.setView([0, 0], 0); // [lat, lon], zoom
+```
+<a href="resources/01-basico.html" data-preview-link>01-basico.html</a>
 
 == 
 ## Breve historia
