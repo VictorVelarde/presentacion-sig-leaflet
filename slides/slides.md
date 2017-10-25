@@ -110,8 +110,8 @@ Note: Un elipsoide es un modelo que determina el tamaño de la Tierra. Hay vario
 ==
 El Elipsoide más "famoso" es...
 ## **WGS84 (usado en los GPS)** <!-- .element style="color: #57A15E;" -->
-* S. mayor = 6.378.137.0 m
-* S. menor = 6.356.752.314 m
+* S. mayor = 6.378.137,0 m
+* S. menor = 6.356.752,314 m
 * Geoide - Elipsoide ~= +/- 100m
 Note:
 SGR80 es equivalente a WGS84 (idéntico semieje mayor, menor difiere en décimas de milímetro). SGR80 se usa en Europa, dentro del ETRS89.
@@ -204,7 +204,24 @@ Geoide >> Elipsoide / Esfera >> Datum >> Coordenadas >> Proyecciones...
 <div class="box">
     <h2>2º. Un repaso general a Leaflet</h2> 
 </div>
-<!-- .slide: data-background="resources/leaves.jpg" -->>
+<!-- .slide: data-background="resources/leaves.jpg" -->
+
+==
+## ¿Por qué Leaflet? (I)
+* **Gmaps**: El "Pionero" (2005)
+* **OpenLayers**: El primero "Libre" (2006)
+* **Leaflet**: El "Moderno" (2011)
+Note:
+Leaflet como reacción a lo complejo / GIS, rápido y basado en HTML5 y CSS3
+
+==
+## ¿Por qué Leaflet? (II)
+* Madurez: clientes "famosos" y Top 1 en https://unpkg.com/#/stats
+<img src='resources/usuarios-leaflet.png'>
+
+==
+## ¡SENCILLEZ!
+<!-- .slide: data-background="#57A15E" -->
 
 ==
 ## 1. Mapa básico (4 lín.)
@@ -216,21 +233,44 @@ map.setView([0, 0], 0); // [lat, lon], zoom
 ```
 <a href="resources/01-basico.html" data-preview-link>01-basico.html</a>
 
-== 
-## Breve historia
-<!-- .slide: data-background="#57A15E" -->
-Note: Aparición ante GMaps, madurez, casos de éxito.
+==
+## CAPAS **Raster & Vector**
+### Mapa base / Capas temáticas
+<img src='resources/layers.jpg'>
 
 ==
-## ¿Por qué Leaflet?
-* Gmaps
-* OpenLayers
+## Datos Raster (I)
+Servicios teselados = TILES! (**XYZ** / TMS)
+<img src='resources/tilemap.jpeg'>
+<a href="https://a.tile.openstreetmap.org/19/256584/191733.png" data-preview-link>Tesela XYZ</a>
 
-== 
-## Conceptos generales SIG
-* Capa de información: ráster / vector
-* Software: escritorio / BD / Web
-* Formatos de datos y cómo encaja Leaflet en ese contexto.
+==
+## Datos Raster (II)
+Imagenes & WMS
+* [Territorio de Cantabria] (http://www.territoriodecantabria.es/cartografia-sig/servicios-wms-iig)
+
+==
+## 2. Mapa con WMS
+```js
+var map = L.map('map');
+
+map.setView([0, 0], 0);
+```
+<a href="resources/02-wms.html" data-preview-link>02-wms.html</a>
+
+==
+## Datos Vectoriales (I)
+Markers
+
+==
+## Datos Vectoriales (II)
+GeoJSON
+
+==
+## La Comunidad LeafletJS
+* Decenas de [Plugins](http://leafletjs.com/plugins.html)
+* Desarrollos "sobre/compabiles" con Leaflet: CARTO, Mapbox, Tangram...
+<!-- .slide: data-background="#57A15E" -->
 
 
 <!-- 3º Cierre ---------------------------------------------------- -->
@@ -238,6 +278,7 @@ Note: Aparición ante GMaps, madurez, casos de éxito.
 ## Referencias
 * ESRI - [Geoide, Elipsoide y Datum](http://desktop.arcgis.com/es/arcmap/latest/map/projections/about-the-geoid-ellipsoid-spheroid-and-datum-and-h.htm)
 * OLAYA, V - Libro libre de [Sistemas de Información Geográfica](http://volaya.github.io/libro-sig/)
+* AGAFONKIN, V. [Leaflet Story in 13 minutes](https://youtu.be/NLbyHffKQuU)
 
 === 
 ![CodersCantabria](./resources/Coders.jpg)  <!-- .element style="border: 0; background: none; box-shadow: none; border-radius: 350px;" -->
