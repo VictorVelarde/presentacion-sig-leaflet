@@ -176,8 +176,13 @@ Se usa la versión esférica de la proyección, no la elipsoidal, para mayor vel
 <img src='resources/tissot_mercator.png'>
 
 ==
+## ¿Groenlandia vs Africa? <!-- .element class="fragment" data-fragment-index="1" -->  
+<img src='resources/Groenland.png'><!-- .element class="fragment" data-fragment-index="2" -->  
+
+
+==
 ## Repasando:
-Geoide >> Elipsoide / Esfera >> Datum >> Coordenadas >> Proyecciones...
+Geoide >> Elipsoide / Esfera >> Datum >> Coordenadas >> Proyecciones... ===> **EPSG**
 
 ==
 <div class="box">
@@ -210,13 +215,13 @@ Geoide >> Elipsoide / Esfera >> Datum >> Coordenadas >> Proyecciones...
 ## ¿Por qué Leaflet? (I)
 * **Gmaps**: El "Pionero" (2005)
 * **OpenLayers**: El primero "Libre" (2006)
-* **Leaflet**: El "Moderno" (2011)
+* **Leaflet**: El "Moderno" (2011, v1.0 2016)
 Note:
 Leaflet como reacción a lo complejo / GIS, rápido y basado en HTML5 y CSS3
 
 ==
 ## ¿Por qué Leaflet? (II)
-* Madurez: clientes "famosos" y Top 1 en https://unpkg.com/#/stats
+* Madurez: Clientes y Top nº1 en https://unpkg.com/#/stats
 <img src='resources/usuarios-leaflet.png'>
 
 ==
@@ -234,27 +239,31 @@ map.setView([0, 0], 0); // [lat, lon], zoom
 <a href="resources/01-basico.html" data-preview-link>01-basico.html</a>
 
 ==
-## CAPAS **Raster & Vector**
-### Mapa base / Capas temáticas
+## **CAPAS** Raster & Vector
+### Base - Temáticas - Interactivas
 <img src='resources/layers.jpg'>
 
 ==
-## Datos Raster (I)
-Servicios teselados = TILES! (**XYZ** / TMS)
+Datos Raster (I)
+## Servicios teselados = TILES! (**XYZ** / TMS)
 <img src='resources/tilemap.jpeg'>
+
 <a href="https://a.tile.openstreetmap.org/19/256584/191733.png" data-preview-link>Tesela XYZ</a>
 
 ==
-## Datos Raster (II)
-Imagenes & WMS
-* [Territorio de Cantabria] (http://www.territoriodecantabria.es/cartografia-sig/servicios-wms-iig)
+Datos Raster (II)
+## OGC-WMS (GIS)
+* [WMS IDEE](http://www.idee.es/directorio-de-servicios)
+* [Territorio de Cantabria](http://www.territoriodecantabria.es/cartografia-sig/servicios-wms-iig)
 
 ==
 ## 2. Mapa con WMS
 ```js
 var map = L.map('map');
-
-map.setView([0, 0], 0);
+var url = 'http://www.ign.es/wms-inspire/pnoa-ma';
+var wmsOptions = {layers: 'OI.OrthoimageCoverage'};
+var pnoa = L.tileLayer.wms(url, wmsOptions).addTo(map);
+map.setView([43.4703347, -3.8071147], 8);
 ```
 <a href="resources/02-wms.html" data-preview-link>02-wms.html</a>
 
@@ -279,6 +288,7 @@ GeoJSON
 * ESRI - [Geoide, Elipsoide y Datum](http://desktop.arcgis.com/es/arcmap/latest/map/projections/about-the-geoid-ellipsoid-spheroid-and-datum-and-h.htm)
 * OLAYA, V - Libro libre de [Sistemas de Información Geográfica](http://volaya.github.io/libro-sig/)
 * AGAFONKIN, V. [Leaflet Story in 13 minutes](https://youtu.be/NLbyHffKQuU)
+* Vídeo sobre las distorsiones en área de Web Mercator [Maps that prove you don't really know Earth](https://youtu.be/KUF_Ckv8HbE)
 
 === 
 ![CodersCantabria](./resources/Coders.jpg)  <!-- .element style="border: 0; background: none; box-shadow: none; border-radius: 350px;" -->
