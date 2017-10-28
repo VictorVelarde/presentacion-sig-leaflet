@@ -4,24 +4,48 @@
 <head>
     <title>01 - Básico</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta charset="utf-8" />
 
     <!-- 01 - CSS Leaflet -->
     <link rel="stylesheet" href="http:///unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
 </head>
 
 <body>
-    <!-- 02 - DIV Mapa -->
-    <div id="map" style="width: 100%; height: 400px"></div>
+    <h1>Básico</h1>
 
-    <!-- 02 - Biblioteca en CDN -->
+    <!-- 02 - DIV Mapa -->
+    <div id="map" style="width: 100%; height: 600px"></div>
+
+    <!-- 03 - Biblioteca en CDN -->
     <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
 
-    <!-- 03 - Creación del mapa -->
+    <!-- 04 - Creación del mapa -->
     <script>
         var map = L.map('map');
         var url = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png';
-        L.tileLayer(url).addTo(map);
+        L.tileLayer(url).addTo(map); // << factory-method & 'chaining'
         map.setView([0, 0], 0);
+
+        // otros mapas en tiles: ver https://leaflet-extras.github.io/leaflet-providers/preview/
+        var stamen = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.png', {
+            attribution: 'Map tiles by Stament',
+            subdomains: 'abcd',
+            minZoom: 10,
+            maxZoom: 18
+        });
+        map.addLayer(stamen);
+
+        // eventos de mapa: http://leafletjs.com/reference-1.2.0.html#map-event
+        map.on('moveend', function (e) {
+            console.log(e); //e.target === map;
+            console.log('CENTER: ', map.getCenter(), ' - ZOOM: ' + map.getZoom());
+        });
+
+        map.on('click', e => console.log(e.latlng)); // MouseEvent --> latlng
+
+        // hacer un mapa teselado --> TileMill / Mapbox Studio
+
+        // F12 > ver capas en leaflet-pane leaflet-tile-pane
     </script>
 </body>
 

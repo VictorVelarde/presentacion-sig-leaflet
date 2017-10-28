@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>03 - Markers</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta charset="utf-8" />
+    <meta charset="utf-8" />
+
+    <!-- 01 - CSS Leaflet -->
+    <link rel="stylesheet" href="http:///unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
+</head>
+
+<body>
+    <h1>Markers</h1>
+
+    <!-- 02 - DIV Mapa -->
+    <div id="map" style="width: 100%; height: 600px"></div>
+
+    <!-- 03 - Biblioteca en CDN -->
+    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+
+    <!-- 04 - Creación del mapa -->
+    <script>
+        var map = L.map('map');
+        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(map);
+
+        // marker: http://leafletjs.com/reference.html#marker
+        var lat = 43.4580863;
+        var lon = -3.8178212;
+        var centro = L.marker([lat, lon]).addTo(map).bindPopup('<h4>¡Aquí estamos!</h4>');
+
+        // marker con icono personalizado
+        var beerIcon = L.icon({
+            iconUrl: 'beer.png',
+            iconAnchor: [16, 16]
+        });
+        var bar = L.marker([43.4594487, -3.8161397], { icon: beerIcon })
+            .bindTooltip('¿Una cerveza?')
+            .bindPopup('<h2>Claro!</h2>')
+            .addTo(map);
+
+        // otros objetos 'simples': Circle, Polyline, Polygon...
+        var latlngs = [centro.getLatLng(), bar.getLatLng()];
+
+        var polyline = L.polyline(latlngs, {
+            color: 'red',
+            weight: 4,
+            opacity: 0.5,
+            dashArray: '5, 5',
+            interactive: false
+        }).addTo(map); // estilos --> svg
+
+        // popup sin marker
+        var popup = L.popup();
+        map.on('click', function (e) {
+            var coords = e.latlng;
+            popup.setLatLng(coords);
+            popup.setContent(coords.toString());
+            popup.openOn(map);
+        });
+
+        map.setView([lat, lon], 17);
+
+    </script>
+</body>
+
+</html>

@@ -2,49 +2,56 @@
 <html>
 
 <head>
-    <title>02 - WMS</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-	<meta charset="utf-8"  />
-	
-    <!-- 01 - CSS Leaflet -->
-    <link rel="stylesheet" href="http:///unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
+	<title>02 - WMS</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta charset="utf-8" />
+	<meta charset="utf-8" />
+
+	<!-- 01 - CSS Leaflet -->
+	<link rel="stylesheet" href="http:///unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
 </head>
 
 <body>
-    <!-- 02 - DIV Mapa -->
-    <div id="map" style="width: 100%; height: 400px"></div>
-	
+	<h1>WMS</h1>
+
+	<!-- 02 - DIV Mapa -->
+	<div id="map" style="width: 100%; height: 600px"></div>
+
 	<h2>Peticiones PNOA</h2>
 	<ul>
-		<li><a href="http://www.ign.es/wms-inspire/pnoa-ma?service=WMS&version=1.3.0&request=GetCapabilities" target="_blank">		
-		GetCapabilities</a></li>
-		<li><a href="http://www.ign.es/wms-inspire/pnoa-ma?service=WMS&request=GetMap&layers=OI.OrthoimageCoverage&styles=&format=image/jpeg&transparent=false&version=1.1.&height=256&width=256&srs=EPSG%3A3857&bbox=-421932.396134173,5383612.776181535,-420709.4036816101,5384835.768634099" target="_blank">
-		GetMap</a></li>
+		<li>
+			<a href="http://www.ign.es/wms-inspire/pnoa-ma?service=WMS&version=1.3.0&request=GetCapabilities" target="_blank">
+				GetCapabilities</a>
+		</li>
+		<li>
+			<a href="http://www.ign.es/wms-inspire/pnoa-ma?service=WMS&request=GetMap&layers=OI.OrthoimageCoverage&styles=&format=image/jpeg&transparent=false&version=1.1.&height=256&width=256&srs=EPSG%3A3857&bbox=-421932.396134173,5383612.776181535,-420709.4036816101,5384835.768634099"
+			 target="_blank">
+				GetMap</a>
+		</li>
 	</ul>
 
-    <!-- 02 - Biblioteca en CDN -->
-    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+	<!-- 03 - Biblioteca en CDN -->
+	<script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
 
-    <!-- 03 - Creación del mapa -->
-    <script>
-        var map = L.map('map');
-		
+	<!-- 04 - Creación del mapa -->
+	<script>		
+		var map = L.map('map');
+
 		// pnoa
 		var url = 'http://www.ign.es/wms-inspire/pnoa-ma';
-		var wmsOptions = {layers: 'OI.OrthoimageCoverage'};
-		var pnoa = L.tileLayer.wms(url, wmsOptions).addTo(map);
-		
+		var options = { layers: 'OI.OrthoimageCoverage' };
+		var pnoa = L.tileLayer.wms(url, options).addTo(map);
+
 		// nasa
-		var nasa = L.tileLayer.wms('https://demo.boundlessgeo.com/geoserver/ows?', {layers: 'nasa:bluemarble'});
-		
-		// Layers-control
-		var baseMaps = {"PNOA": pnoa, "NASA": nasa};
+		var nasa = L.tileLayer.wms('https://demo.boundlessgeo.com/geoserver/ows?', { layers: 'nasa:bluemarble' });
+
+		// control-layers
+		var baseMaps = { "PNOA": pnoa, "NASA": nasa };
 		var overlayMaps = {};
 		L.control.layers(baseMaps, overlayMaps).addTo(map);
-		
-		
-        map.setView([43.4703347, -3.8071147], 8);
-    </script>
+
+		map.setView([43.4703347, -3.8071147], 8);
+	</script>
 </body>
 
 </html>

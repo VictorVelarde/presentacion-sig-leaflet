@@ -79,8 +79,8 @@ Pero en esta presentación solo nos centramos en un ámbito muy concreto de los 
 
 ==
 <div class="box">
-    <h2>¡Las Coordenadas!</h2>
-    <p>Latitud: 43.45779 y Longitud: -3.81964</p>
+    <h2>Las Coordenadas</h2>
+    <p>Latitud: 43.4580863 y Longitud: -3.8178212</p>
 </div>
 <!-- .slide: data-background="resources/brujula-mano.jpg" -->
 
@@ -98,8 +98,8 @@ Note: Su medición es labor de la Geodesia, pero es una superficie muy compleja 
 
 ==
 ## OK, y ¿cómo se miden coordenadas sobre él...?
-# ¯\\\_(ツ)\_/¯ <!-- .element style="color: yellow" class="fragment" data-fragment-index="1" -->  
-###Pfff.... complicado <!-- .element style="color: yellow" class="fragment" data-fragment-index="2" -->  
+###Pfff.... complicado <!-- .element style="color: yellow" class="fragment" data-fragment-index="1" -->  
+# ¯\\\_(ツ)\_/¯ <!-- .element style="color: yellow" class="fragment" data-fragment-index="2" -->  
 
 ==
 Componente espacial (II)
@@ -181,8 +181,9 @@ Se usa la versión esférica de la proyección, no la elipsoidal, para mayor vel
 
 
 ==
-## Repasando:
-Geoide >> Elipsoide / Esfera >> Datum >> Coordenadas >> Proyecciones... ===> **EPSG**
+### Repasando...
+Geoide >> Elipsoide-Esfera >> Datum >> Coordenadas >> Proyecciones 
+## **EPSG** <!-- .element style="color: #57A15E;"-->
 
 ==
 <div class="box">
@@ -195,7 +196,6 @@ Geoide >> Elipsoide / Esfera >> Datum >> Coordenadas >> Proyecciones... ===> **E
 * GPS, KML, GeoJSON, BD: **EPSG: 4326**
 * Mapa base Web (GoogleMaps, OSM...): **EPSG:3857**
 * Si no conocemos el EPSG... ¡las cosas no cuadran!
-<!-- .slide: data-background="red" -->
 
 ==
 <div class="box">
@@ -229,7 +229,7 @@ Leaflet como reacción a lo complejo / GIS, rápido y basado en HTML5 y CSS3
 <!-- .slide: data-background="#57A15E" -->
 
 ==
-## 1. Mapa básico (4 lín.)
+## Mapa básico en 4 líneas
 ```js
 var map = L.map('map');
 var url = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png';
@@ -239,37 +239,41 @@ map.setView([0, 0], 0); // [lat, lon], zoom
 <a href="resources/01-basico.html" data-preview-link>01-basico.html</a>
 
 ==
-## **CAPAS** Raster & Vector
-### Base - Temáticas - Interactivas
+## **Capas** 
+### Raster & Vector
+### Base - Temáticas / Interactivas
 <img src='resources/layers.jpg'>
 
 ==
-Datos Raster (I)
-## Servicios teselados = TILES! (**XYZ** / TMS)
+## Raster - Servicios Tiles: **XYZ**
 <img src='resources/tilemap.jpeg'>
 
 <a href="https://a.tile.openstreetmap.org/19/256584/191733.png" data-preview-link>Tesela XYZ</a>
 
 ==
-Datos Raster (II)
-## OGC-WMS (GIS)
+## Raster - Fuentes WMS
+* Estándar OGC
 * [WMS IDEE](http://www.idee.es/directorio-de-servicios)
 * [Territorio de Cantabria](http://www.territoriodecantabria.es/cartografia-sig/servicios-wms-iig)
 
 ==
-## 2. Mapa con WMS
+## Raster - Mapa con WMS
 ```js
 var map = L.map('map');
 var url = 'http://www.ign.es/wms-inspire/pnoa-ma';
-var wmsOptions = {layers: 'OI.OrthoimageCoverage'};
-var pnoa = L.tileLayer.wms(url, wmsOptions).addTo(map);
+var options = {layers: 'OI.OrthoimageCoverage'};
+var pnoa = L.tileLayer.wms(url, options).addTo(map);
 map.setView([43.4703347, -3.8071147], 8);
 ```
 <a href="resources/02-wms.html" data-preview-link>02-wms.html</a>
 
 ==
-## Datos Vectoriales (I)
-Markers
+## Vector - Markers y PopUps
+```js
+var marker = L.marker([lat, lon]);
+marker.addTo(map).bindPopup(miHtml);
+```
+<a href="resources/03-markers.html" data-preview-link>03-markers.html</a>
 
 ==
 ## Datos Vectoriales (II)
