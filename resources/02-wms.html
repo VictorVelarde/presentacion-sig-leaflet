@@ -5,7 +5,6 @@
 	<title>02 - WMS</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	<meta charset="utf-8" />
-	<meta charset="utf-8" />
 
 	<!-- 01 - CSS Leaflet -->
 	<link rel="stylesheet" href="http:///unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
@@ -43,7 +42,9 @@
 		var pnoa = L.tileLayer.wms(url, options).addTo(map);
 
 		// nasa
-		var nasa = L.tileLayer.wms('https://demo.boundlessgeo.com/geoserver/ows?', { layers: 'nasa:bluemarble' });
+		var urlNasa = 'https://demo.boundlessgeo.com/geoserver/ows?';
+		var nasa = L.tileLayer.wms(urlNasa,
+			{ layers: 'nasa:bluemarble' });
 
 		// control-layers
 		var baseMaps = { "PNOA": pnoa, "NASA": nasa };

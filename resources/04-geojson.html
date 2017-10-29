@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>04 - GeoJSON</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta charset="utf-8" />
+
+    <!-- 01 - CSS Leaflet -->
+    <link rel="stylesheet" href="http:///unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
+</head>
+
+<body>
+    <h1>GeoJSON</h1>
+    <h2>Tasa de juventud en Cantabria (2016)</h2>
+    <!-- 02 - DIV Mapa -->
+    <div id="map" style="width: 100%; height: 600px"></div>
+
+    <!-- 03 - Biblioteca en CDN -->
+    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+
+    <!-- 04 - Creación del mapa -->
+    <script>
+        var map = L.map('map');
+        var positron = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+            subdomains: 'abcd',
+            maxZoom: 19
+        });
+        map.addLayer(positron);
+
+        // GeoJSON
+        var municipios;
+        fetch('juventud-2016.geojson').then(function (r) {
+            return r.json();
+        }).then(cargarCapa);
+
+        function cargarCapa(datosJuventud) {
+            municipios = L.geoJson(datosJuventud, {
+                /*style: estiloParaTasa,*/
+                /*onEachFeature: crearInteraccion,*/
+                attribution: 'ICANE 2017'
+            });
+            map.addLayer(municipios);
+            map.fitBounds(municipios.getBounds());
+        }
+
+        function estiloParaTasa(feature) {
+            var tasa = parseFloat(feature.properties['Juven-2016']);
+            var estilo = {
+                color: tasa > 15 ? 'red' : 'gray',
+                weight: 1
+            };
+            /*
+                        var coropletas = (tasa > 16) ? '#d7191c' :
+                            (tasa > 12) ? '#fdae61' :
+                                (tasa > 8) ? '#ffffbf' :
+                                    (tasa > 4) ? '#abdda4' :
+                                        '#2b83ba';
+                        estilo.fillColor = coropletas;
+                        estilo.fillOpacity = 0.9;
+                        estilo.color = 'grey';
+            */
+            return estilo;
+        }
+
+        function crearInteraccion(feature, layer) {
+            var p = feature.properties;
+            var popup = '<h2>' + p.Nombre + '</h2>';
+            popup += 'Tasa Juventud: ' + parseFloat(p['Juven-2016']);
+            layer.bindPopup(popup);
+        }
+
+    </script>
+</body>
+
+</html>

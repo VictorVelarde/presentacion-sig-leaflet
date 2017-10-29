@@ -3,6 +3,7 @@
 ## Mapas en la Web
 <br/>
 [@CodersCantabria](https://twitter.com/coderscantabria) - Noviembre, 2017
+
 [@VictorVelarde](https://victorvelarde.github.io) <!-- .element style="margin-top: 60px; color: #57A15E;" -->
 
 ===
@@ -58,7 +59,7 @@ Es una cita referida a SIG en administraciones locales. Aunque poco contrastada,
 
 ==
 # **SIG:**  <!-- .element style="color: #57A15E;"--> 
-## Herramientas para crear, consultar, analizar y **visualizar** IG en Mapas
+## Herramientas para crear, consultar, analizar y **<u>visualizar</u>** IG en Mapas
 <img src='resources/gis-electronic.jpg'>
 Note:
 Pero en esta presentación solo nos centramos en un ámbito muy concreto de los SIG: visualización de mapas en la Web
@@ -85,7 +86,7 @@ Pero en esta presentación solo nos centramos en un ámbito muy concreto de los 
 <!-- .slide: data-background="resources/brujula-mano.jpg" -->
 
 == 
-## La **Cartografía** y la **Geodesia** proporcionan los conceptos principales para entenderlas...
+## La **Cartografía** y la **Geodesia** proporcionan los <u>conceptos</u> principales para entenderlas...
 
 ==
 <!-- .slide: data-background="black" -->
@@ -160,10 +161,9 @@ Equidistantes --> conserva las distancias, Equivalentes --> superficies, Conform
 ==
 ## Web Mercator (I)
 ### **La Reina en Internet** <!-- .element style="color: #57A15E;" -->
+* **EPSG:3857** (WGS84 + metros)
 * GoogleMaps, Bing, ESRI, OSM...
-* Norte arriba
-* EPSG:3857 (WGS84 + metros)
-* No cubre todo! (~ 85ºN a 85ºS)
+* Norte arriba, pero no cubre todo! (~ 85ºN a 85ºS)
 Note: 
 Se usa la versión esférica de la proyección, no la elipsoidal, para mayor velocidad en los cálculos. Esto provoca aprox. un 0.33% de distorsión de escala en la dirección Y, algo que no es visualmente perceptible, y simplifica los cálculos.
 
@@ -195,7 +195,7 @@ Geoide >> Elipsoide-Esfera >> Datum >> Coordenadas >> Proyecciones
 ## PUNTOS CLAVE 
 * GPS, KML, GeoJSON, BD: **EPSG: 4326**
 * Mapa base Web (GoogleMaps, OSM...): **EPSG:3857**
-* Si no conocemos el EPSG... ¡las cosas no cuadran!
+* Si no conocemos el EPSG... <u>¡las cosas no cuadran!</u>
 
 ==
 <div class="box">
@@ -276,8 +276,12 @@ marker.addTo(map).bindPopup(miHtml);
 <a href="resources/03-markers.html" data-preview-link>03-markers.html</a>
 
 ==
-## Datos Vectoriales (II)
-GeoJSON
+## Vector - GeoJSON
+```js
+var capa = L.geoJson(data);
+map.addLayer(capa);
+```
+<a href="resources/04-geojson.html" data-preview-link>04-geojson.html</a>
 
 ==
 ## La Comunidad LeafletJS
