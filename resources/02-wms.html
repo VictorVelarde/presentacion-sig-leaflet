@@ -51,6 +51,8 @@
 		var overlayMaps = {};
 		L.control.layers(baseMaps, overlayMaps).addTo(map);
 
+		L.control.scale({ imperial: false }).addTo(map);
+
 		map.setView([43.4703347, -3.8071147], 8);
 	</script>
 </body>

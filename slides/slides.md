@@ -11,11 +11,13 @@
 
 ===
 <div class="redbox">
-    <h2>... y os ha salido <em>torcido<em>?</h2> 
+    <h2>... y os ha salido algo <em>raro<em>?</h2> 
 </div>
 <!-- .slide: data-background="resources/mapa-invertido.jpg" -->
 
 ===
+## ¿o con datos "apelotonados"?
+![Null Island](./resources/null_island.jpg)
 <!-- .slide: data-background="black" -->
 
 ===
@@ -65,14 +67,17 @@ Note:
 Pero en esta presentación solo nos centramos en un ámbito muy concreto de los SIG: visualización de mapas en la Web
 
 ==
-## Pero los **SIG !== Mapas web**
+## Pero los **SIG > Mapas web**
 (¿quién dijo análisis?) 
+
+==
+## Y aquí hablaremos centrados en **Mapas web**
 
 ==
 <!-- .slide: data-background="black" -->
 
 == 
-## Si queremos crear en una web un mapa con el Centro cívico Callealtero...
+## Si queremos crear <u>una web con un mapa</u> con el Centro cívico Callealtero...
 <img src='resources/CentroCivico.png' style='height:400px'>
 
 ==
@@ -137,9 +142,8 @@ Gracias al datum ya podemos medir en superficie con
 <img src='resources/globo_persona.jpg'>
 
 ==
-## ¿Pero si queremos un mapa en una web (o en papel)?
+## ¿Pero si queremos un **mapa 2D** (web / papel)?
 <img src='resources/naranja.jpg'><!-- .element class="fragment" data-fragment-index="1" -->  
-## 3D !== 2D<!-- .element class="fragment" data-fragment-index="2" -->  
 
 ==
 Componente espacial - (y IV)
@@ -151,7 +155,7 @@ Componente espacial - (y IV)
 ==
 <div class="box">
     <h3>Toda proyección...</h3>
-    <h2>Implica una <strong>distorsión</strong></h2>
+    <h2>implica una <strong>distorsión</strong></h2>
     <p>(área, ángulo, distancias...)</p>
 </div>
 <!-- .slide: data-background="resources/mariposa.jpg" -->
@@ -160,30 +164,24 @@ Equidistantes --> conserva las distancias, Equivalentes --> superficies, Conform
 
 ==
 ## Web Mercator (I)
-### **La Reina en Internet** <!-- .element style="color: #57A15E;" -->
+## **La Reina en Internet (Google, ESRI...)** <!-- .element style="color: #57A15E;" -->
 * **EPSG:3857** (WGS84 + metros)
-* GoogleMaps, Bing, ESRI, OSM...
-* Norte arriba, pero no cubre todo! (~ 85ºN a 85ºS)
+* Norte arriba | ~ 85ºN a 85ºS
 Note: 
 Se usa la versión esférica de la proyección, no la elipsoidal, para mayor velocidad en los cálculos. Esto provoca aprox. un 0.33% de distorsión de escala en la dirección Y, algo que no es visualmente perceptible, y simplifica los cálculos.
 
 ==
-## Mercator (II)
+## Web Mercator (II)
 <img src='resources/mercator.jpg'>
 
 ==
-## Mercator (III)
+## Web Mercator (III)
 <img src='resources/tissot_mercator.png'>
 
 ==
-## ¿Groenlandia vs Africa? <!-- .element class="fragment" data-fragment-index="1" -->  
+## Web Mercator (IV)
+### ¿Groenlandia vs Africa? <!-- .element class="fragment" data-fragment-index="1" -->  
 <img src='resources/Groenland.png'><!-- .element class="fragment" data-fragment-index="2" -->  
-
-
-==
-### Repasando...
-Geoide >> Elipsoide-Esfera >> Datum >> Coordenadas >> Proyecciones 
-## **EPSG** <!-- .element style="color: #57A15E;"-->
 
 ==
 <div class="box">
@@ -192,10 +190,16 @@ Geoide >> Elipsoide-Esfera >> Datum >> Coordenadas >> Proyecciones
 <!-- .slide: data-background="resources/boring.gif" -->
 
 ==
-## PUNTOS CLAVE 
+### Repasando...
+Geoide >> Elipsoide-Esfera >> Datum >> Coordenadas >> Proyecciones 
+## **EPSG** <!-- .element style="color: #57A15E;"-->
+<small>(si no conocemos el EPSG... <u>¡las cosas no cuadran!</u>)</small>
+
+==
+## Chuleta
 * GPS, KML, GeoJSON, BD: **EPSG: 4326**
 * Mapa base Web (GoogleMaps, OSM...): **EPSG:3857**
-* Si no conocemos el EPSG... <u>¡las cosas no cuadran!</u>
+<!-- .slide: data-background="#57A15E" -->
 
 ==
 <div class="box">
@@ -215,13 +219,13 @@ Geoide >> Elipsoide-Esfera >> Datum >> Coordenadas >> Proyecciones
 ## ¿Por qué Leaflet? (I)
 * **Gmaps**: El "Pionero" (2005)
 * **OpenLayers**: El primero "Libre" (2006)
-* **Leaflet**: El "Moderno" (2011, v1.0 2016)
+* **Leaflet**: El "Moderno" (2011, v1.0 en 2016)
 Note:
 Leaflet como reacción a lo complejo / GIS, rápido y basado en HTML5 y CSS3
 
 ==
 ## ¿Por qué Leaflet? (II)
-* Madurez: Clientes y Top nº1 en https://unpkg.com/#/stats
+* Madurez: Clientes y Top 3 en https://unpkg.com/#/stats
 <img src='resources/usuarios-leaflet.png'>
 
 ==
@@ -240,8 +244,9 @@ map.setView([0, 0], 0); // [lat, lon], zoom
 
 ==
 ## **Capas** 
-### Raster & Vector
-### Base - Temáticas / Interactivas
+* Raster & Vector
+* Base & Temáticas (interactivas)
+
 <img src='resources/layers.jpg'>
 
 ==
@@ -284,11 +289,50 @@ map.addLayer(capa);
 <a href="resources/04-geojson.html" data-preview-link>04-geojson.html</a>
 
 ==
-## La Comunidad LeafletJS
-* Decenas de [Plugins](http://leafletjs.com/plugins.html)
-* Desarrollos "sobre/compabiles" con Leaflet: CARTO, Mapbox, Tangram...
-<!-- .slide: data-background="#57A15E" -->
+## ¿Más funciones?
+### **PLUGINS**<!-- .element class="fragment" data-fragment-index="1" -->
 
+==
+Plugin (I)
+### Mapas de calor con [Leaflet.heat](https://github.com/Leaflet/Leaflet.heat)
+<a href="http://leaflet.github.io/Leaflet.heat/demo/" data-preview-link><img src='resources/plugin-heatmap.png'></a>
+
+==
+Plugin (II)
+### Mapas base de España WMS con [Leaflet.Spain.WMS](https://github.com/sigdeletras/Leaflet.Spain.WMS)
+<a href="http://www.sigdeletras.com/Leaflet.Spain.WMS/examples/" data-preview-link><img src='resources/plugin-wms.png'></a>
+
+==
+Plugin (III)
+### Geocoding con [leaflet-geosearch](https://github.com/smeijer/leaflet-geosearch)
+<a href="https://smeijer.github.io/leaflet-geosearch/#openstreetmap" data-preview-link><img src='resources/plugin-geosearch.png'></a>
+
+==
+Plugin (IV)
+### Animaciones con [Leaflet.TimeDimension](https://github.com/socib/Leaflet.TimeDimension)
+<a href="http://apps.socib.es/Leaflet.TimeDimension/examples/" data-preview-link><img src='resources/plugin-timedimension.png'></a>
+
+==
+Plugin (V)
+### Campos v/e con [Leaflet.CanvasLayer.Field](https://github.com/IHCantabria/Leaflet.CanvasLayer.Field)
+<a href="https://ihcantabria.github.io/Leaflet.CanvasLayer.Field/" data-preview-link><img src='resources/plugin-field.png'></a>
+
+==
+<div class="redbox">
+    <h2>La Comunidad</h2> 
+    <ul>
+        <li>Decenas de [Plugins](http://leafletjs.com/plugins.html)</li>
+        <li>Desarrollos "sobre/compatibles": CARTO, Mapbox, Tangram...</li>
+    </ul>
+</div>
+<!-- .slide: data-background="resources/comunidad.jpg" -->
+
+==
+## Oficial Leaflet
+* http://leafletjs.com
+    * **[API Docs](http://leafletjs.com/reference.html)**
+    * [Plugins](http://leafletjs.com/plugins.html)
+* [Github](https://github.com/Leaflet/Leaflet)
 
 <!-- 3º Cierre ---------------------------------------------------- -->
 ===
@@ -297,7 +341,7 @@ map.addLayer(capa);
 * OLAYA, V - Libro libre de [Sistemas de Información Geográfica](http://volaya.github.io/libro-sig/)
 * AGAFONKIN, V. [Leaflet Story in 13 minutes](https://youtu.be/NLbyHffKQuU)
 * Vídeo sobre las distorsiones en área de Web Mercator [Maps that prove you don't really know Earth](https://youtu.be/KUF_Ckv8HbE)
-
+* Wikipedia. [Null Island](https://es.wikipedia.org/wiki/Null_Island)
 === 
 ![CodersCantabria](./resources/Coders.jpg)  <!-- .element style="border: 0; background: none; box-shadow: none; border-radius: 350px;" -->
 
