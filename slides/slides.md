@@ -71,7 +71,7 @@ Pero en esta presentación solo nos centramos en un ámbito muy concreto de los 
 (¿quién dijo análisis?) 
 
 ==
-## Y aquí hablaremos centrados en **Mapas web**
+## Y aquí hablaremos centrados en los **Mapas web**
 
 ==
 <!-- .slide: data-background="black" -->
@@ -191,9 +191,9 @@ Se usa la versión esférica de la proyección, no la elipsoidal, para mayor vel
 
 ==
 ### Repasando...
-Geoide >> Elipsoide-Esfera >> Datum >> Coordenadas >> Proyecciones 
-## **EPSG** <!-- .element style="color: #57A15E;"-->
-<small>(si no conocemos el EPSG... <u>¡las cosas no cuadran!</u>)</small>
+Geoide >> Elipsoide-Esfera >> Datum >> Coordenadas >> Proyecciones (Mercator)
+## **[EPSG](http://epsg.io/)** <!-- .element style="color: #57A15E;"-->
+<small>(y si no conocemos el EPSG... <u>¡las cosas no cuadran!</u>)</small>
 
 ==
 ## Chuleta
@@ -342,6 +342,7 @@ Plugin (V)
 * AGAFONKIN, V. [Leaflet Story in 13 minutes](https://youtu.be/NLbyHffKQuU)
 * Vídeo sobre las distorsiones en área de Web Mercator [Maps that prove you don't really know Earth](https://youtu.be/KUF_Ckv8HbE)
 * Wikipedia. [Null Island](https://es.wikipedia.org/wiki/Null_Island)
+
 === 
 ![CodersCantabria](./resources/Coders.jpg)  <!-- .element style="border: 0; background: none; box-shadow: none; border-radius: 350px;" -->
 
