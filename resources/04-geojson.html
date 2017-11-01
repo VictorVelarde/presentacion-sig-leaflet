@@ -39,6 +39,7 @@
             municipios = L.geoJson(datosJuventud, {
                 /*style: estiloParaTasa,*/
                 /*onEachFeature: crearInteraccion,*/
+                /*filter: filtro,*/
                 attribution: 'ICANE 2017'
             });
             map.addLayer(municipios);
@@ -69,6 +70,10 @@
             var popup = '<h2>' + p.Nombre + '</h2>';
             popup += 'Tasa Juventud: ' + parseFloat(p['Juven-2016']);
             layer.bindPopup(popup);
+        }
+
+        function filtro(feature) {
+            return feature.properties['Nombre'].startsWith('San');
         }
 
     </script>
